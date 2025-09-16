@@ -2,10 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: 'main' # cambia si usas otra rama
-  schedule:
-    # Opcional: refrescar cada 12h
-    - cron: '0 */12 * * *'
+    branches: 'main' # O la rama desde la que quieras desplegar
 
 jobs:
   build:
@@ -26,8 +23,6 @@ jobs:
       - name: Build Evidence app
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
-          # Ejemplo de secret:
-          # EVIDENCE_SOURCE__MYDB__USERNAME: ${{ secrets.EVIDENCE_SOURCE__MYDB__USERNAME }}
         run: |
           npm run sources
           npm run build
